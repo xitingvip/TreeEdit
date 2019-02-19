@@ -1,10 +1,10 @@
 /**
- * Copyright 2014-2019, FengMap, Ltd.
+ * Copyright 2014-2019, XiTing, Ltd.
  * All rights reserved.
  *
- * @authors  xt (xiting@fengmap.com)
+ * @authors  xiting
  * @date     2019/1/3 17:32
- * @describe 服务管理 tree
+ * @describe antd可编辑的Tree组件，需要依赖后台
  */
 'use strict';
 
@@ -127,7 +127,7 @@ export default class TreeEdit extends Component {
    * 处理数据（静态）
    * @param treeData
    * @param key 选中节点的key
-   * @param type 'add' 'del' 'edit'  'blur'
+   * @param type 'add' 'del' 'edit' 'blur'
    */
   handleTreeData = (treeData, key, type) => {
     treeData.map((mItem, mIndex) => {
@@ -141,19 +141,7 @@ export default class TreeEdit extends Component {
             delNode={() => this.delNode(mItem.key)}
             title={mItem.copyTitle || ''}/>;
         }
-        // 编辑节点，变为input框
-        if (type === 'edit') {
-          mItem.title = <TreeInput value={mItem.copyTitle} key={mItem.key} blurInput={(value) => this.blurInput(value, mItem.key)}/>;
-        }
-        // input blur 事件，value值变为title
-        if (type === 'blur') {
-          mItem.title = this.state.inputValue;
-          mItem.copyTitle = this.state.inputValue;
-          if (mItem.title === '') {
-            treeData.splice(mIndex, 1);
-          }
-        }
-        // 添加节点，都在最后面添加
+        // 添加节点，0级添加1级，1级添加2级，2级添加3级，3级添加3级，都在最后面添加
         if (type === 'add') {
           if (mItem.children && mItem.parentId === -1) { // 一级添加二级
             let idx = mItem.children.length;
@@ -167,6 +155,18 @@ export default class TreeEdit extends Component {
             let idx = treeData.length;
             let id = Number(treeData[idx - 1].id) + 1;
             treeData.push({ title: <TreeInput blurInput={(value) => this.blurInput(value, id)}/>, key: id, id, parentId: mItem.parentId });
+          }
+        }
+        // 编辑节点，变为input框
+        if (type === 'edit') {
+          mItem.title = <TreeInput value={mItem.copyTitle} key={mItem.key} blurInput={(value) => this.blurInput(value, mItem.key)}/>;
+        }
+        // input blur 事件，value值变为title
+        if (type === 'blur') {
+          mItem.title = this.state.inputValue;
+          mItem.copyTitle = this.state.inputValue;
+          if (mItem.title === '') {
+            treeData.splice(mIndex, 1);
           }
         }
         // 删除节点，删除当前与子节点
@@ -242,9 +242,8 @@ export default class TreeEdit extends Component {
   /**
    * 选择树节点
    * @param selectedKeys
-   * @param info
    */
-  onSelect = (selectedKeys, info) => {
+  onSelect = (selectedKeys) => {
     let { treeData } = this.state;
     treeData = this.resetTreeNodes(treeData);
     treeData = this.handleTreeData(treeData, selectedKeys[0], 'select');
@@ -256,9 +255,7 @@ export default class TreeEdit extends Component {
    * @param expandedKeys
    */
   onExpand = (expandedKeys) => {
-    this.setState({
-      expandedKeys,
-    });
+    this.setState({ expandedKeys});
   };
 
   render() {
