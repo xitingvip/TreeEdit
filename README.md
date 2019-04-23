@@ -1,12 +1,11 @@
-@[TOC](AntDesign的可编辑的Tree拓展)
+# AntDesign的可编辑的Tree拓展
 
-![Alt](data:image/png;base64,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)
 
 技术栈：
 React+AntDesign
 
 业务需求：
-- 点击TreeNode出现editIcon、deleteIcon、addIcon
-- 点击editIcon，原有text变为输入框，失焦保存值
-- 点击deleteIcon，删除自己及其下所有节点
-- 点击addIcon，添加子节点，最外级按钮添加一级节点，一级添加二级，二级添加三级，三级添加三级
+* 点击TreeNode出现editIcon、deleteIcon、addIcon
+* 点击editIcon，原有text变为输入框，失焦保存值
+* 点击deleteIcon，删除自己及其下所有节点
+* 点击addIcon，添加子节点，最外级按钮添加一级节点，一级添加二级，二级添加三级，三级添加三级
