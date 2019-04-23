@@ -1,10 +1,10 @@
 /**
- * Copyright 2014-2019, XiTing, Ltd.
+ * Copyright 2014-2019, FengMap, Ltd.
  * All rights reserved.
- *
- * @authors  xiting
+ * -
+ * @authors  XT (xiting@fengmap.com)
  * @date     2019/1/3 17:32
- * @describe antd可编辑的Tree组件，需要依赖后台
+ * @describe AntDesign可编辑的Tree组件，仅前端，不需要依赖后台
  */
 'use strict';
 

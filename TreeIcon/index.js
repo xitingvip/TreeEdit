@@ -1,12 +1,13 @@
 /**
  * Copyright 2014-2019, FengMap, Ltd.
  * All rights reserved.
- *
- * @authors  xt (xiting@fengmap.com)
+ * -
+ * @authors  XT (xiting@fengmap.com)
  * @date     2019/1/6 16:09
  * @describe 显示编辑、删除、添加的TreeNode
  */
 'use strict';
+
 import React from 'react';
 import { Icon } from 'antd';
 

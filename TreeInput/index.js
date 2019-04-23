@@ -1,12 +1,13 @@
 /**
  * Copyright 2014-2019, FengMap, Ltd.
  * All rights reserved.
- *
- * @authors  xt (xiting@fengmap.com)
+ * -
+ * @authors  XT (xiting@fengmap.com)
  * @date     2019/1/6 16:15
  * @describe TreeNode 编辑框
  */
 'use strict';
+
 import React, { Component } from 'react';
 import { Input } from 'antd';
 
